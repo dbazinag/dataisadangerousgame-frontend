@@ -862,14 +862,14 @@ export default {
 		// @arg no argument
 		showSettingsSubMenu() {
 			// Disabled
-// console.log('Settings menu disabled');
+			// console.log('Settings menu disabled');
 		},
 		// @vuese
 		// Used to show or hide home menu
 		// @arg no argument
 		showHomeSubMenu() {
 			// Disabled
-// console.log('Home menu disabled');
+			// console.log('Home menu disabled');
 		},
 		// @vuese
 		// Used to go to settings page
@@ -953,14 +953,14 @@ export default {
 		// @arg no argument
 		async searchUser() {
 			// Disabled
-// console.log('Search disabled');
+			// console.log('Search disabled');
 		},
 		// @vuese
 		// Used handle logout action
 		// @arg no argument
 		async handlelogout() {
 			// Disabled
-// console.log('Logout disabled');
+			// console.log('Logout disabled');
 		},
 		// @vuese
 		// Show/Hide notifications list

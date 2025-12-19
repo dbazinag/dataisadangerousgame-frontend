@@ -579,9 +579,9 @@ export default {
 			document.querySelector(
 				'#cover-picture'
 			).style.backgroundImage = `url(${bannerImageUrl})`;
-			let responseStatus;
+			// let responseStatus;
 			try {
-				responseStatus = await this.$store.dispatch('user/AddProfileBanner', {
+				await this.$store.dispatch('user/AddProfileBanner', {
 					baseurl: this.$baseurl,
 					file,
 					bannerImageUrl,

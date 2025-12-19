@@ -296,7 +296,7 @@ export default {
 		// @vuese
 		// Used to  set the choosen subreddit that is profile
 		// @arg a string value representing subreddit name which is user name
-		setName(name, image) {
+		setName(name) {
 			// console.log(image);
 			this.inSubreddit = false;
 			this.subredditTitle = name;
