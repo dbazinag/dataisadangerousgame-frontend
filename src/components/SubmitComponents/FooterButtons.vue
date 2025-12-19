@@ -240,7 +240,7 @@ export default {
 					}
 				} catch (err) {
 					this.error = err;
-					console.log(err);
+					// console.log(err);
 				}
 				this.setting = await this.$store.getters[
 					'setting/getpostandcommentsSettings'

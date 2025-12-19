@@ -539,7 +539,7 @@ export default {
 				});
 				this.subredditData = this.$store.getters['community/getSubreddit'];
 			} catch (err) {
-				console.log(err);
+				// console.log(err);
 				// if (this.$store.getters['community/notFound']) {
 				// 	this.$router.push('/notFound');
 				// }

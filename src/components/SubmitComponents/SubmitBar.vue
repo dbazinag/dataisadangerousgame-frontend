@@ -246,7 +246,7 @@ export default {
 				}
 			} catch (err) {
 				this.error = err;
-				console.log(err);
+				// console.log(err);
 			}
 			this.getUserdata();
 			this.getSubreddits();
@@ -297,7 +297,7 @@ export default {
 		// Used to  set the choosen subreddit that is profile
 		// @arg a string value representing subreddit name which is user name
 		setName(name, image) {
-			console.log(image);
+			// console.log(image);
 			this.inSubreddit = false;
 			this.subredditTitle = name;
 			this.communityName = name;
