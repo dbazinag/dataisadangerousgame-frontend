@@ -1,3 +1,6 @@
+const baseUrl =
+	process.env.NODE_ENV === 'production' ? '/dataisadangerousgame-frontend' : '';
+
 export const mockUser = {
 	username: 'ADA',
 	accessToken: 'mock-token-ada',
@@ -69,7 +72,7 @@ export const mockPosts = {
 
 				<h3>All clusters</h3>
 				<br>
-				<iframe src="/plotly/boxplots_polscore_from_cluster.html" title="Boxplots: LIWC scores across clusters"></iframe>
+				<iframe src="${baseUrl}/plotly/boxplots_polscore_from_cluster.html" title="Boxplots: LIWC scores across clusters"></iframe>
 				<br>
 				<p>The figure above shows the distribution of scores by cluster. We first focus on <strong>political_score</strong>, since it was constructed as a reference measure of similarity to political writing.</p>
 				<br>
@@ -117,7 +120,7 @@ export const mockPosts = {
 
 				<h3>Toward-Politics subset</h3>
 				<br>
-				<iframe src="/plotly/boxplots_polscore_toward_politics.html" title="Boxplots: toward Politics subset"></iframe>
+				<iframe src="${baseUrl}/plotly/boxplots_polscore_toward_politics.html" title="Boxplots: toward Politics subset"></iframe>
 				<br>
 				<p>We repeat the analysis on a restricted subset of posts that explicitly go <strong>toward Politics</strong> as the target. This allows us to test whether the same stylistic differences persist when focusing only on politically directed interactions.</p>
 				<br>
@@ -160,7 +163,7 @@ export const mockPosts = {
                     <h3>Correlation Heatmap</h3>
                     <p>We computed a correlation matrix using the <strong>Pearson correlation coefficient</strong>.</p>
                     <br>
-                    <img src="/images/heatmapcorrelation.png" alt="Correlation heatmap of LIWC score categories" />
+                    <img src="${baseUrl}/images/heatmapcorrelation.png" alt="Correlation heatmap of LIWC score categories" />
                     <br>
                     <p><strong>Interpretation note:</strong> political_score correlations with other scores are not treated as meaningful because political_score was constructed from features spanning the other categories (so some correlation is “baked in”).</p>
                     <br>
@@ -172,9 +175,9 @@ export const mockPosts = {
                     <br>
                     <p>Distributions for those pairs:</p>
                     <br>
-                    <img src="/images/argumentative_score_vs_temporal_and_numbers_score_distribution.png" alt="Argumentative vs temporal_and_numbers distribution" />
+                    <img src="${baseUrl}/images/argumentative_score_vs_temporal_and_numbers_score_distribution.png" alt="Argumentative vs temporal_and_numbers distribution" />
                     <br>
-                    <img src="/images/emotionality_score_vs_social_score_distribution.png" alt="Emotionality vs social distribution" />
+                    <img src="${baseUrl}/images/emotionality_score_vs_social_score_distribution.png" alt="Emotionality vs social distribution" />
                     <br>
                     <p>If multiple scores shift around the same period, it supports the idea that big moments correspond to measurable changes in communication style.</p>
                   `,
