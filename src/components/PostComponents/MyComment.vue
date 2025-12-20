@@ -239,7 +239,7 @@ export default {
 			downClicked: false,
 			voteCounter: this.comment.votes,
 			newComment: this.comment.commentBody,
-			replies: [],
+			replies: this.comment.children || [], // Initialize from props
 			edittedComment: '',
 			editing: false,
 			replying: false,
@@ -255,7 +255,9 @@ export default {
 	//@vuese
 	//before mount fetch posts according to type of sorting
 	created() {
-		if (this.comment.numberofChildren != 0) this.fetchPostComments();
+		// Only fetch if we expect children but they aren't provided in the prop
+		if (this.comment.numberofChildren != 0 && this.replies.length === 0)
+			this.fetchPostComments();
 		this.fetchUserProfilePicture();
 	},
 	methods: {

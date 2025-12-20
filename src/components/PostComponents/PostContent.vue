@@ -5,13 +5,19 @@
 				<img
 					src="../../../img/default_subreddit_image.png"
 					alt=""
-					v-if="post.subreddit != undefined && subreddit.picture == undefined"
+					v-if="
+						!loadingSubreddit &&
+						post.subreddit != undefined &&
+						subreddit.picture == undefined
+					"
 				/>
 				<img
 					v-else-if="
-						post.subreddit != undefined && subreddit.picture != undefined
+						!loadingSubreddit &&
+						post.subreddit != undefined &&
+						subreddit.picture != undefined
 					"
-					:src="$baseurl + '/' + post.picture"
+					:src="$baseurl + '/' + subreddit.picture"
 					alt=""
 				/>
 			</span>
@@ -134,6 +140,7 @@ export default {
 				token: accessToken,
 			});
 			this.subreddit = this.$store.getters['community/getSubreddit'];
+			this.loadingSubreddit = false;
 		}
 		let responseData = null;
 		try {
@@ -152,6 +159,7 @@ export default {
 			showCard: false,
 			showPCard: false,
 			getUserData: {},
+			loadingSubreddit: true,
 		};
 	},
 	name: 'PostContent',
