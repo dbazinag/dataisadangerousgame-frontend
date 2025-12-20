@@ -63,7 +63,10 @@
 				class="post-text"
 				v-html="renderingHTML"
 				v-if="post.content != undefined"
-				:class="{ blur: blur && !(parsedPreview && parsedPreview.isImage) }"
+				:class="[
+					{ blur: blur && !(parsedPreview && parsedPreview.isImage) },
+					post.customClass,
+				]"
 			></div>
 			<div v-if="post.link != undefined" class="post-link">
 				<a :href="post.link">{{ post.link }}</a>
@@ -197,13 +200,13 @@ export default {
 			) {
 				const parser = new DOMParser();
 				const doc = parser.parseFromString(this.post.content, 'text/html');
-				const firstImg = doc.querySelector('img');
-				if (firstImg) {
-					// On feed: Title + First Picture Only.
-					// Return only the image HTML.
-					return { isImage: true, html: firstImg.outerHTML };
+				// Find first image OR iframe (Plotly)
+				const firstMedia = doc.querySelector('img, iframe');
+				if (firstMedia) {
+					// Return the media HTML. Treat as "isImage" to avoid blur/truncation.
+					return { isImage: true, html: firstMedia.outerHTML };
 				}
-				// On feed: No picture -> text preview
+				// On feed: No picture/chart -> text preview
 				const text = doc.body.textContent || '';
 				return {
 					isImage: false,
@@ -305,7 +308,9 @@ export default {
 	width: 100%;
 	overflow: hidden; /* Hide scrollbars caused by the wider iframe element before scaling */
 	height: 100%;
-	word-break: break-all;
+	/* word-break: break-all; */
+	word-break: normal;
+	overflow-wrap: break-word;
 }
 .post-text ::v-deep img {
 	max-width: 100%;
@@ -322,6 +327,13 @@ p img .ql-image {
 	height: 650px; /* Reduced to match specific Plotly height of ~550px + buffer */
 	border: none;
 	margin-bottom: -325px; /* Pull up next element by half the height */
+}
+
+.post-text.zoomed-out-charts ::v-deep iframe {
+	width: 300%;
+	transform: scale(0.333);
+	margin-bottom: -567px; /* 850 - (850 * 0.333) approx 567 */
+	height: 850px;
 }
 
 .subreddit-info .subreddit-image {

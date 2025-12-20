@@ -650,6 +650,8 @@ a {
 	width: 100%;
 	/* overflow: auto; */
 	height: 100%;
-	word-break: break-all;
+	/* word-break: break-all; */
+	word-break: normal;
+	overflow-wrap: break-word;
 }
 </style>

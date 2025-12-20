@@ -14,7 +14,7 @@ export const mockPosts = {
 	children: [
 		{
 			data: {
-				_id: 'liwc_method_001',
+				_id: 'post1_2_2_5writing_scores',
 				title:
 					'How We Built 5 LIWC “Writing Style” Scores (And a Political Similarity Score)',
 				content: `
@@ -60,78 +60,74 @@ export const mockPosts = {
 		},
 		{
 			data: {
-				_id: 'liwc_cluster_results_002',
+				_id: 'post2_2_2_cluster_results',
 				title:
 					'Cluster Results: Who ‘Sounds Political’? (All Clusters + Toward-Politics Subset)',
 				content: `
-				<p>This post presents the main results of our LIWC-based analysis. We examine how the <strong>five objective writing-style scores</strong> and the <strong>political_score</strong> are distributed across clusters, and then repeat the analysis on a restricted subset of posts that explicitly go <em>toward Politics</em> as the target.</p>
+				<p><em>Part 2 of our LIWC analysis series.</em> In this post, we compare how clusters distribute across the five objective writing-style scores and the political_score. We then repeat the analysis on a restricted subset of posts that explicitly go <em>toward Politics</em> as the target.</p>
 				<br>
 
-				<p>The goal here is not to measure topic frequency, but to understand <strong>how clusters differ in writing style</strong>, and which clusters use language that is most similar to the Politics cluster in LIWC signal space.</p>
+				<p>The goal is not to measure topic frequency, but to understand <strong>how clusters differ in writing style</strong>, and which clusters use language that is most similar to the Politics cluster in LIWC signal space.</p>
 				<br>
 
 				<h3>All clusters</h3>
 				<br>
 				<iframe src="${baseUrl}/plotly/boxplots_polscore_from_cluster.html" title="Boxplots: LIWC scores across clusters"></iframe>
 				<br>
+
 				<p>The figure above shows the distribution of scores by cluster. We first focus on <strong>political_score</strong>, since it was constructed as a reference measure of similarity to political writing.</p>
 				<br>
 
-				<p><strong>Political score.</strong> The Politics cluster has the highest median political_score (approximately <strong>0.64</strong>). This result is expected, because political_score was explicitly designed so that political writing would be maximized relative to other clusters. Importantly, this score should be interpreted <em>relatively</em>: the farther a cluster’s median is from zero, the more similar its writing style is to that of the Politics cluster.</p>
+				<p><strong>Political score.</strong> The Politics cluster has the highest median political_score (approximately <strong>0.64</strong>). This is expected, because political_score was explicitly designed so that political writing would be maximized relative to other clusters. Interpretation of this score is relative: clusters with medians farther from zero exhibit writing styles more similar to political discourse.</p>
 				<br>
 
-				<p>Two clusters follow closely behind Politics: <strong>Humor/Memes</strong> and <strong>Niche Interests</strong>. This does <em>not</em> mean that these clusters are the most political by topic. Rather, it suggests that their posts <strong>look similar in writing style</strong> to political posts when measured using LIWC features.</p>
+				<p>Two clusters follow closely behind Politics: <strong>Humor/Memes</strong> and <strong>Niche Interests</strong>. This does <em>not</em> imply that these clusters are the most political by topic. Rather, it suggests that their posts <strong>resemble political writing in style</strong> when evaluated using LIWC features.</p>
 				<br>
 
-				<p>Inspecting the other score distributions helps explain where this similarity comes from. Politics, Humor/Memes, and Niche Interests all tend to show:</p>
+				<p>Inspecting the other score distributions helps explain this similarity. Politics, Humor/Memes, and Niche Interests consistently show:</p>
 				<ul>
 					<li>low <strong>text_complexity_score</strong>,</li>
 					<li>higher <strong>emotionality_score</strong>,</li>
 					<li>higher <strong>argumentative_score</strong>, and</li>
 					<li>higher <strong>social_score</strong>.</li>
 				</ul>
-				<p>Together, these characteristics describe a shared writing style that is emotionally expressive, socially oriented, and argumentative, with relatively low structural complexity.</p>
+
+				<p>Together, these characteristics describe a shared style that is emotionally expressive, socially oriented, and argumentative, with relatively low structural complexity.</p>
 				<br>
 
-				<p>For <strong>temporal_and_numbers_score</strong>, the medians across clusters are very similar, and the minimum and maximum values overlap substantially. As a result, this score is less informative for distinguishing clusters in this context.</p>
+				<p>For <strong>temporal_and_numbers_score</strong>, medians are similar across clusters and distributions overlap substantially, making this score less informative for distinguishing cluster styles.</p>
 				<br>
 
 				<h3>Other median patterns</h3>
-				<p>Beyond political_score, several consistent patterns emerge when comparing medians across clusters:</p>
 				<ul>
-					<li><strong>Politics</strong> has the highest medians for emotionality, argumentative, and social scores.</li>
-					<li><strong>Adult Life & Technology</strong> has the <strong>highest text_complexity_score</strong> and the <strong>lowest argumentative_score</strong>, indicating a more structured and informational writing style.</li>
-					<li><strong>NSFW</strong> has the lowest emotionality_score, suggesting comparatively lower emotional expression.</li>
+					<li><strong>Politics</strong> has the highest emotionality, argumentative, and social medians.</li>
+					<li><strong>Adult Life & Technology</strong> has the highest text_complexity and the lowest argumentative median, indicating a more structured, informational style.</li>
+					<li><strong>NSFW</strong> has the lowest emotionality.</li>
 				</ul>
 				<br>
 
-				<p>Outliers also provide insight. Politics shows some of the <strong>largest emotionality outliers</strong>, meaning political posts can reach the highest observed levels of emotional intensity. In contrast, Adult Life & Technology shows large outliers and a high median for text complexity, which is consistent with longer and more structured discussions.</p>
+				<p>Outliers further reinforce these patterns. Politics shows some of the largest emotionality outliers, while Adult Life & Technology shows large outliers and high medians in text complexity.</p>
 				<br>
 
 				<h3>Statistical validation</h3>
-				<p>To determine whether these visual differences are statistically meaningful, we apply a <strong>Kruskal–Wallis test</strong> for each score. Because the score distributions are not normal, a non-parametric test is required.</p>
+				<p>Because score distributions are non-normal, we apply <strong>Kruskal–Wallis tests</strong> to detect cluster-level differences. All scores yield significant p-values, indicating systematic differences between clusters.</p>
 				<br>
 
-				<p>For all five objective scores and political_score, the Kruskal–Wallis test yields <strong>significant p-values</strong>, indicating that at least some clusters differ systematically. We then apply <strong>Dunn’s post-hoc test</strong> to identify the most different pairs.</p>
-				<br>
-
-				<p>Across multiple scores, the most consistent and statistically significant separation is between <strong>Adult Life & Technology</strong> and <strong>Politics</strong>. This suggests that, even when clusters may discuss overlapping themes, they do so using <strong>fundamentally different writing styles</strong>.</p>
+				<p>Using <strong>Dunn’s post-hoc test</strong>, the most consistent and statistically significant separation across multiple scores is between <strong>Adult Life & Technology</strong> and <strong>Politics</strong>. This suggests that these clusters differ strongly in writing style, even when discussing similar themes.</p>
 				<br>
 
 				<h3>Toward-Politics subset</h3>
 				<br>
 				<iframe src="${baseUrl}/plotly/boxplots_polscore_toward_politics.html" title="Boxplots: toward Politics subset"></iframe>
 				<br>
-				<p>We repeat the analysis on a restricted subset of posts that explicitly go <strong>toward Politics</strong> as the target. This allows us to test whether the same stylistic differences persist when focusing only on politically directed interactions.</p>
+
+				<p>This restricted analysis focuses only on posts that go <strong>toward Politics</strong> as the target. While <strong>Celebrities</strong> can show a high median political_score here, the cluster contains <strong>too few posts</strong> for that value to be stable.</p>
 				<br>
 
-				<p>In this subset, <strong>Celebrities</strong> can show a high median political_score. However, this result should be interpreted with caution: the Celebrities cluster contains <strong>too few posts going toward Politics</strong> for the median to be stable or meaningful.</p>
+				<p>Despite this limitation, the strongest recurring difference remains <strong>Adult Life & Technology vs Politics</strong>, reinforcing the robustness of the stylistic distinction.</p>
 				<br>
 
-				<p>Despite this limitation, the overall pattern remains remarkably consistent. Even on this restricted subset, the <strong>strongest recurring difference</strong> remains between <strong>Adult Life & Technology</strong> and <strong>Politics</strong>, reinforcing the robustness of this stylistic distinction.</p>
-				<br>
-
-				<p><strong>Takeaway:</strong> These results show that clusters differ not only in what they talk about, but in <em>how they communicate</em>. Clusters that appear “close” to Politics in political_score are best understood as stylistically similar, rather than topically political.</p>
+				<p><em>Next:</em> in Part 3, we analyze how these writing-style scores relate to one another using correlation analysis across the full dataset.</p>
 				`,
 				kind: 'hybrid',
 				subreddit: 'DataScience',
@@ -154,33 +150,43 @@ export const mockPosts = {
 		},
 		{
 			data: {
-				_id: 'liwc_corr_trends_003',
-				title:
-					'Correlations + Time Trends: Which Traits Move Together, and When?',
+				_id: 'post3_2_2_correlations',
+				title: 'Correlations Between LIWC Writing-Style Scores',
 				content: `
-                    <p>After cluster comparisons, we checked (1) which scores move together and (2) whether the scores drift over time.</p>
-                    <br>
-                    <h3>Correlation Heatmap</h3>
-                    <p>We computed a correlation matrix using the <strong>Pearson correlation coefficient</strong>.</p>
-                    <br>
-                    <img src="${baseUrl}/images/heatmapcorrelation.png" alt="Correlation heatmap of LIWC score categories" />
-                    <br>
-                    <p><strong>Interpretation note:</strong> political_score correlations with other scores are not treated as meaningful because political_score was constructed from features spanning the other categories (so some correlation is “baked in”).</p>
-                    <br>
-                    <p>For the <strong>5 objective scores</strong>, many correlations are statistically significant. Two relationships stand out:</p>
-                    <ul>
-                      <li><strong>argumentative_score</strong> vs <strong>temporal_and_numbers_score</strong> (positive correlation)</li>
-                      <li><strong>emotionality_score</strong> vs <strong>social_score</strong> (positive correlation)</li>
-                    </ul>
-                    <br>
-                    <p>Distributions for those pairs:</p>
-                    <br>
-                    <img src="${baseUrl}/images/argumentative_score_vs_temporal_and_numbers_score_distribution.png" alt="Argumentative vs temporal_and_numbers distribution" />
-                    <br>
-                    <img src="${baseUrl}/images/emotionality_score_vs_social_score_distribution.png" alt="Emotionality vs social distribution" />
-                    <br>
-                    <p>If multiple scores shift around the same period, it supports the idea that big moments correspond to measurable changes in communication style.</p>
-                  `,
+				<p><em>Part 3 of our LIWC analysis series.</em> This post examines how the writing-style scores relate to one another across the full dataset. Importantly, this analysis focuses on <strong>static relationships</strong> between scores and does <em>not</em> consider changes over time.</p>
+				<br>
+
+				<h3>Correlation heatmap</h3>
+				<p>We compute pairwise correlations between scores using the <strong>Pearson correlation coefficient</strong>.</p>
+				<br>
+
+				<img src="${baseUrl}/images/heatmapcorrelation.png" alt="Correlation heatmap of LIWC score categories" />
+				<br>
+
+				<p><strong>Interpretation note:</strong> correlations involving political_score are not interpreted, since political_score was constructed using features drawn from the other categories. As a result, correlation is partly built in by design.</p>
+				<br>
+
+				<p>Among the <strong>five objective scores</strong>, several correlations are statistically significant. However, when considering both effect size and interpretability, two relationships stand out:</p>
+				<ul>
+					<li><strong>argumentative_score</strong> and <strong>temporal_and_numbers_score</strong>,</li>
+					<li><strong>emotionality_score</strong> and <strong>social_score</strong>.</li>
+				</ul>
+				<br>
+
+				<p>The distributions below illustrate these positive relationships.</p>
+				<br>
+
+				<img src="${baseUrl}/images/argumentative_score_vs_temporal_and_numbers_score_distribution.png" alt="Argumentative vs temporal_and_numbers distribution" />
+				<br>
+
+				<img src="${baseUrl}/images/emotionality_score_vs_social_score_distribution.png" alt="Emotionality vs social distribution" />
+				<br>
+
+				<p>These correlations suggest that certain writing-style traits tend to co-occur. For example, emotionally expressive posts also tend to use more social language, and argumentative posts often reference time and quantities.</p>
+				<br>
+
+				<p><em>Next:</em> building on these static relationships, the following section studies how writing styles evolve <strong>over time</strong> in response to major events.</p>
+				`,
 				kind: 'hybrid',
 				subreddit: 'DataViz',
 				author: 'liwc_lab_notes',
@@ -202,24 +208,64 @@ export const mockPosts = {
 		},
 		{
 			data: {
-				_id: 'post_hybrid_1',
-				title: 'My Travels: A Photo Journal (Rich Content)',
+				_id: 'post1_3_3_time_series_major_events',
+				title:
+					'LIWC Over Time: Did the 2016 US Election Change How Subreddits “Sound” Political?',
 				content: `
-					<p>Here is a start to my journey. I went to the mountains first.</p>
-					<br>
-					<img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Mountains"/>
-					<br>
-					<p>The view was amazing. The air was crisp and the hike was challenging but rewarding. Then decided to head to the coast.</p>
-					<br>
-					<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Beach"/>
-					<br>
-					<p>It was sunny and warm by the ocean.</p>
+				<p><em>Part 4 of our LIWC analysis series.</em> In this post, we move from static comparisons to a temporal perspective. We analyze how LIWC-based writing-style scores evolve over time, with a focus on whether major political events—specifically the 2016 US election—correspond to detectable changes in language use across clusters.</p>
+				<br>
+
+				<h3>Political score over time (all clusters)</h3>
+				<br>
+				<iframe src="${baseUrl}/plotly/political_score_twpol.html" title="Political score over time by cluster"></iframe>
+				<br>
+
+				<p>This plot shows how the <strong>political_score</strong> evolves from January 2014 to April 2017 for each cluster. At first glance, the time series does not show a clear or sustained spike during the 2016 election period (September–November 2016). Instead, fluctuations appear throughout the entire time span, with spikes occurring in multiple clusters at different points in time.</p>
+				<br>
+
+				<p>Based on visual inspection alone, it would be difficult to confidently attribute any specific change to the 2016 election. Importantly, however, the presence of frequent spikes also prevents us from concluding that there is <em>no</em> time-based effect.</p>
+				<br>
+
+				<p>To move beyond visual intuition, we apply a <strong>robust z-score spike test</strong> to the monthly political_score values.</p>
+				<br>
+
+				<p>This test identifies a statistically significant spike in <strong>November 2016</strong>, with a robust z-score of <strong>3.12</strong>. This month corresponds to the US presidential election and coincides with a sharp change in the number of hyperlinks originating from the Politics cluster.</p>
+				<br>
+
+				<p>Taken together, these results suggest that the 2016 election had an observable impact on how subreddits interacted with political content. The effect is not visible as a dramatic or persistent shift in writing style, but rather as a <strong>short-lived, statistically detectable deviation</strong> that aligns with increased political cross-linking.</p>
+				<br>
+
+				<h3>Posts toward Politics: political and emotional responses</h3>
+				<br>
+				<iframe src="${baseUrl}/plotly/political_score_twpol.html" title="Political score over time for posts toward Politics"></iframe>
+				<br>
+
+				<iframe src="${baseUrl}/plotly/emotion_score_time_series.html" title="Emotionality score over time for posts toward Politics"></iframe>
+				<br>
+
+				<iframe src="${baseUrl}/plotly/social_score_time_series.html" title="Social score over time for posts toward Politics"></iframe>
+				<br>
+
+				<p>We then restrict the analysis to <strong>posts that go toward Politics</strong> and examine how political_score, emotionality_score, and social_score evolve over time. As with the previous plot, visual inspection alone does not reveal a clear election-driven pattern.</p>
+				<br>
+
+				<p>Applying the same robust z-score spike test to these time series identifies a significant spike in <strong>April 2017</strong> for both political_score and emotionality_score. This month does not correspond to a major event in Donald Trump’s presidency.</p>
+				<br>
+
+				<p>Rather than indicating a single historical trigger, this result suggests a <strong>delayed or cumulative reaction</strong> in how subreddits respond to political content. It highlights that temporal effects may manifest through community dynamics rather than immediate responses to headline events.</p>
+				<br>
+
+				<p>Looking more closely at the <strong>Politics cluster</strong> itself, the <strong>social_score</strong> shows a spike in <strong>September 2016</strong>. While this spike is not visually dramatic, it occurs shortly before the election and suggests increased socially oriented language within political discourse during the campaign period.</p>
+				<br>
+
+				<p><strong>Takeaway:</strong> Time-based effects are subtle and cannot be inferred reliably from visual inspection alone. However, robust statistical testing reveals short-lived but meaningful deviations that align with major political events and shifts in cross-cluster interaction patterns.</p>
 				`,
 				kind: 'hybrid',
-				subreddit: 'Travel',
-				author: 'ADA',
-				votes: 120,
-				commentCount: 5,
+				subreddit: 'DataScience',
+				author: 'liwc_lab_notes',
+				votes: 1780,
+				commentCount: 6,
+				customClass: 'zoomed-out-charts',
 				createdAt: new Date().toISOString(),
 				images: [],
 				video: '',
@@ -230,7 +276,7 @@ export const mockPosts = {
 				sendReplies: true,
 				saved: false,
 				hidden: false,
-				vote: 1,
+				vote: 0,
 				sharedPostDetails: null,
 			},
 		},
@@ -239,7 +285,7 @@ export const mockPosts = {
 };
 
 export const mockComments = {
-	liwc_method_001: [
+	post1_2_2_5writing_scores: [
 		{
 			commentId: 'c_lm1_001',
 			commentedBy: 'statsNewbie',
@@ -324,7 +370,7 @@ export const mockComments = {
 		},
 	],
 
-	liwc_cluster_results_002: [
+	post2_2_2_cluster_results: [
 		{
 			commentId: 'c_lcr2_001',
 			commentedBy: 'clusterWatcher',
@@ -445,7 +491,7 @@ export const mockComments = {
 		},
 	],
 
-	liwc_corr_trends_003: [
+	post3_2_2_correlations: [
 		{
 			commentId: 'c_lct3_001',
 			commentedBy: 'correlationIsNot',
@@ -517,6 +563,130 @@ export const mockComments = {
 						],
 					},
 					votes: 28,
+					vote: 0,
+					saved: false,
+					followed: false,
+					children: [],
+					numberofChildren: 0,
+					level: 2,
+				},
+			],
+			numberofChildren: 1,
+			level: 1,
+		},
+	],
+	post1_3_3_time_series_major_events: [
+		{
+			commentId: 'c_401',
+			commentedBy: 'stats_reader',
+			publishTime: new Date().toISOString(),
+			commentBody: {
+				ops: [
+					{
+						insert:
+							'Interesting that the election doesn’t show a huge visible spike. Does that mean it had no effect?\n',
+					},
+				],
+			},
+			votes: 61,
+			vote: 0,
+			saved: false,
+			followed: false,
+			children: [
+				{
+					commentId: 'c_401_1',
+					commentedBy: 'liwc_lab_notes',
+					publishTime: new Date().toISOString(),
+					commentBody: {
+						ops: [
+							{
+								insert:
+									'Not necessarily. The time series are noisy, so visual inspection alone isn’t reliable. That’s why we use the robust z-score spike test, which detects a statistically significant deviation in November 2016 aligned with the election.\n',
+							},
+						],
+					},
+					votes: 44,
+					vote: 0,
+					saved: false,
+					followed: false,
+					children: [],
+					numberofChildren: 0,
+					level: 2,
+				},
+			],
+			numberofChildren: 1,
+			level: 1,
+		},
+		{
+			commentId: 'c_402',
+			commentedBy: 'electionwatcher',
+			publishTime: new Date().toISOString(),
+			commentBody: {
+				ops: [
+					{
+						insert:
+							'Why does April 2017 spike if there was no major political event then?\n',
+					},
+				],
+			},
+			votes: 38,
+			vote: 0,
+			saved: false,
+			followed: false,
+			children: [
+				{
+					commentId: 'c_402_1',
+					commentedBy: 'liwc_lab_notes',
+					publishTime: new Date().toISOString(),
+					commentBody: {
+						ops: [
+							{
+								insert:
+									'This suggests delayed or cumulative effects rather than immediate reactions. Community responses to political content can evolve over time as discourse stabilizes or polarizes, even without a single triggering event.\n',
+							},
+						],
+					},
+					votes: 29,
+					vote: 0,
+					saved: false,
+					followed: false,
+					children: [],
+					numberofChildren: 0,
+					level: 2,
+				},
+			],
+			numberofChildren: 1,
+			level: 1,
+		},
+		{
+			commentId: 'c_403',
+			commentedBy: 'methodology_nerd',
+			publishTime: new Date().toISOString(),
+			commentBody: {
+				ops: [
+					{
+						insert: 'Why use a robust z-score instead of a standard z-score?\n',
+					},
+				],
+			},
+			votes: 47,
+			vote: 0,
+			saved: false,
+			followed: false,
+			children: [
+				{
+					commentId: 'c_403_1',
+					commentedBy: 'liwc_lab_notes',
+					publishTime: new Date().toISOString(),
+					commentBody: {
+						ops: [
+							{
+								insert:
+									'The distributions are non-normal and contain outliers. Robust z-scores reduce sensitivity to extreme values and give more reliable spike detection in noisy time series.\n',
+							},
+						],
+					},
+					votes: 41,
 					vote: 0,
 					saved: false,
 					followed: false,
