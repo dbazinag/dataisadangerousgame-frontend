@@ -250,10 +250,34 @@
 							class="paragraph-post"
 							id="base-user-data-post-paragraph-post"
 						>
+							<!-- Preview Logic: Extract First Image or Text Snippet -->
 							<div
+								v-if="getHybridPreviewImage(postData.data.content)"
+								class="post-image-preview"
+							>
+								<img
+									:src="getHybridPreviewImage(postData.data.content)"
+									style="
+										max-height: 512px;
+										width: 100%;
+										object-fit: contain;
+										margin: 0 auto;
+										display: block;
+									"
+								/>
+							</div>
+							<div
+								v-else
 								class="post-kind-post"
 								id="base-user-data-post-post-kind-post"
-								v-html="PostHybridContent"
+								v-html="getHybridPreviewText(postData.data.content)"
+								style="
+									-webkit-mask-image: linear-gradient(
+										180deg,
+										#000 60%,
+										transparent
+									);
+								"
 							></div>
 						</div>
 						<div
@@ -619,15 +643,32 @@ export default {
 		 */
 		setPostHybridContent() {
 			if (this.postData.data.kind == 'hybrid') {
-				let QuillDeltaToHtmlConverter =
-					require('quill-delta-to-html').QuillDeltaToHtmlConverter;
-				//console.log(this.postData.data.content);
-				let deltaOps = this.postData.data.content.ops;
-				let cfg = {};
-				let converter = new QuillDeltaToHtmlConverter(deltaOps, cfg);
-				//console.log(converter.convert());
-				this.PostHybridContent = converter.convert();
+				// If it's a string (our new hardcoded HTML), just use it.
+				if (typeof this.postData.data.content === 'string') {
+					this.PostHybridContent = this.postData.data.content;
+				} else {
+					// Legacy/Existing Quill Delta support
+					let QuillDeltaToHtmlConverter =
+						require('quill-delta-to-html').QuillDeltaToHtmlConverter;
+					let deltaOps = this.postData.data.content.ops;
+					let cfg = {};
+					let converter = new QuillDeltaToHtmlConverter(deltaOps, cfg);
+					this.PostHybridContent = converter.convert();
+				}
 			}
+		},
+		getHybridPreviewImage(content) {
+			if (typeof content !== 'string') return null;
+			const parser = new DOMParser();
+			const doc = parser.parseFromString(content, 'text/html');
+			const img = doc.querySelector('img');
+			return img ? img.src : null;
+		},
+		getHybridPreviewText(content) {
+			if (typeof content !== 'string') return '';
+			// Simple truncate or return limited HTML
+			// For safety/simplicity, we might just return the full HTML but restricted by CSS height/mask
+			return content;
 		},
 		/**
 		 * @vuese

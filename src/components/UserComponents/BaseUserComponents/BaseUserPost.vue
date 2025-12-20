@@ -664,14 +664,18 @@ export default {
 		 */
 		setPostHybridContent() {
 			if (this.postData.data.kind == 'hybrid') {
-				let QuillDeltaToHtmlConverter =
-					require('quill-delta-to-html').QuillDeltaToHtmlConverter;
-				//console.log(this.postData.data.content);
-				let deltaOps = this.postData.data.content.ops;
-				let cfg = {};
-				let converter = new QuillDeltaToHtmlConverter(deltaOps, cfg);
-				//console.log(converter.convert());
-				this.PostHybridContent = converter.convert();
+				if (typeof this.postData.data.content === 'string') {
+					this.PostHybridContent = this.postData.data.content;
+				} else {
+					let QuillDeltaToHtmlConverter =
+						require('quill-delta-to-html').QuillDeltaToHtmlConverter;
+					//console.log(this.postData.data.content);
+					let deltaOps = this.postData.data.content.ops;
+					let cfg = {};
+					let converter = new QuillDeltaToHtmlConverter(deltaOps, cfg);
+					//console.log(converter.convert());
+					this.PostHybridContent = converter.convert();
+				}
 			}
 		},
 		/**

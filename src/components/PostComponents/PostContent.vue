@@ -57,7 +57,7 @@
 				class="post-text"
 				v-html="renderingHTML"
 				v-if="post.content != undefined"
-				:class="{ blur: blur }"
+				:class="{ blur: blur && !(parsedPreview && parsedPreview.isImage) }"
 			></div>
 			<div v-if="post.link != undefined" class="post-link">
 				<a :href="post.link">{{ post.link }}</a>
@@ -82,9 +82,7 @@
 					alt=""
 				/>
 			</div>
-			<video width="800" height="500" controls v-if="post.video != undefined">
-				<source :src="this.$baseurl + '/' + post.video" />
-			</video>
+			<!-- Video removed as per request -->
 			<div v-if="shared">
 				{{ post.votes }} points .
 				<router-link
@@ -183,7 +181,39 @@ export default {
 		},
 	},
 	computed: {
+		parsedPreview() {
+			if (
+				this.post.content &&
+				typeof this.post.content === 'string' &&
+				this.blur
+			) {
+				const parser = new DOMParser();
+				const doc = parser.parseFromString(this.post.content, 'text/html');
+				const firstImg = doc.querySelector('img');
+				if (firstImg) {
+					// On feed: Title + First Picture Only.
+					// Return only the image HTML.
+					return { isImage: true, html: firstImg.outerHTML };
+				}
+				// On feed: No picture -> text preview
+				const text = doc.body.textContent || '';
+				return {
+					isImage: false,
+					html: text.slice(0, 200) + (text.length > 200 ? '...' : ''),
+				};
+			}
+			return null;
+		},
 		renderingHTML() {
+			if (this.parsedPreview) {
+				return this.parsedPreview.html;
+			}
+
+			if (this.post.content && typeof this.post.content === 'string') {
+				// Detail view: Full HTML
+				return this.post.content;
+			}
+
 			var QuillDeltaToHtmlConverter =
 				require('quill-delta-to-html').QuillDeltaToHtmlConverter;
 
@@ -263,35 +293,27 @@ export default {
 .images {
 	overflow: hidden;
 }
-.post-content .post-title h3 {
-	color: black;
-	margin: 10px 0px;
-}
-
-.post-content .post-text {
-	color: black;
-	overflow: hidden;
-	font-size: 12px;
-}
-.blur {
-	mask-image: linear-gradient(180deg, #000 0%, transparent);
-}
-.subreddit-info .subreddit-image img {
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-}
 .post-text {
 	width: 100%;
-	overflow: auto;
+	overflow: hidden; /* Hide scrollbars caused by the wider iframe element before scaling */
 	height: 100%;
 	word-break: break-all;
 }
-.post-text p img {
-	width: 100%;
+.post-text ::v-deep img {
+	max-width: 100%;
+	height: auto;
+	display: block;
 }
 p img .ql-image {
 	width: 100%;
+}
+.post-text ::v-deep iframe {
+	width: 200%; /* Double the rendering width to fit wide charts */
+	transform: scale(0.5); /* Shrink by half to fit container */
+	transform-origin: 0 0;
+	height: 650px; /* Reduced to match specific Plotly height of ~550px + buffer */
+	border: none;
+	margin-bottom: -325px; /* Pull up next element by half the height */
 }
 
 .subreddit-info .subreddit-image {
@@ -325,10 +347,13 @@ p img .ql-image {
 	border: 1px solid var(--color-grey-light-8);
 	border-radius: 5px;
 }
-video,
 .post-image {
 	width: 100%;
 	height: auto;
+}
+/* Video styles removed or overridden to be hidden just in case */
+video {
+	display: none;
 }
 .post-link {
 	font-size: 12px;
