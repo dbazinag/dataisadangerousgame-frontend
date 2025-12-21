@@ -83,7 +83,7 @@ export const mockPosts = {
 				<h3>Source Activity: Who Links Out the Most?</h3>
 				<p>The chart below shows the total volume of outgoing hyperlinks from each cluster:</p>
 				<br>
-				<iframe src="${baseUrl}/plotly/Overall_source_activity.html" title="Outgoing hyperlinks by cluster" scrolling="no"></iframe>
+				<iframe src="${baseUrl}/plotly/overall_source_activity.html" title="Outgoing hyperlinks by cluster" scrolling="no"></iframe>
 				<br>
 				<p>Three clusters clearly dominate the outgoing link activity: Humor/Memes, Politics, and Adult Life & Technology. These communities are by far the most active in sharing hyperlinks to other parts of Reddit.</p>
 				<br>
@@ -91,7 +91,7 @@ export const mockPosts = {
 				<h3>Target Activity: Who Gets Linked To?</h3>
 				<p>Similarly, when we examine which clusters receive the most incoming hyperlinks, a nearly identical pattern emerges:</p>
 				<br>
-				<iframe src="${baseUrl}/plotly/Overall_target_activity.html" title="Incoming hyperlinks by cluster" scrolling="no"></iframe>
+				<iframe src="${baseUrl}/plotly/overall_target_activity.html" title="Incoming hyperlinks by cluster" scrolling="no"></iframe>
 				<br>
 				<p>Once again, the same three clusters dominate: Humor/Memes, Adult Life & Technology, and Politics.</p>
 				<br>
