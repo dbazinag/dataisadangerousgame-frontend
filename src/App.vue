@@ -171,6 +171,16 @@ export default {
 html {
 	box-sizing: border-box;
 	font-size: 62.5%;
+	/* Hide scrollbars on html */
+	overflow: auto;
+	scrollbar-width: none !important; /* Firefox */
+	-ms-overflow-style: none !important; /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
 }
 
 body {
@@ -188,6 +198,42 @@ body {
 
 	min-height: 100vh;
 	/*overflow: auto;*/
+
+	/* Hide scrollbars */
+	overflow: auto;
+	scrollbar-width: none !important; /* Firefox */
+	-ms-overflow-style: none !important; /* IE and Edge */
+}
+
+/* Hide scrollbars for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
+}
+
+/* Hide scrollbars for all elements */
+* {
+	scrollbar-width: none !important; /* Firefox */
+	-ms-overflow-style: none !important; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+	display: none !important; /* Chrome, Safari, Opera */
+	width: 0 !important;
+	height: 0 !important;
+}
+
+/* Specifically target iframes (for Plotly charts, etc.) */
+iframe {
+	scrollbar-width: none !important;
+	-ms-overflow-style: none !important;
+}
+
+iframe::-webkit-scrollbar {
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
 }
 
 /* router animation */
@@ -212,6 +258,18 @@ body {
 .route-enter-toو .route-leave-from {
 	opacity: 1;
 	transform: translateY(0);
+}
+
+/* custom post styles */
+.cluster-map-frame {
+	width: 100%;
+	height: 1000px;
+	border: none;
+	overflow: hidden !important;
+}
+
+.cluster-map-frame::-webkit-scrollbar {
+	display: none !important;
 }
 
 /* media queries */

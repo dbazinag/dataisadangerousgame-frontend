@@ -311,6 +311,10 @@ export default {
 	/* word-break: break-all; */
 	word-break: normal;
 	overflow-wrap: break-word;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 21px;
+	color: black;
 }
 .post-text ::v-deep img {
 	max-width: 100%;
@@ -334,6 +338,15 @@ p img .ql-image {
 	transform: scale(0.333);
 	margin-bottom: -567px; /* 850 - (850 * 0.333) approx 567 */
 	height: 850px;
+}
+
+.post-text.first-post-charts ::v-deep iframe {
+	width: 200%;
+	transform: scale(0.5);
+	transform-origin: 0 0;
+	height: 750px; /* Slightly taller than default 650px for cluster map */
+	border: none;
+	margin-bottom: -375px; /* Pull up next element by half the height */
 }
 
 .subreddit-info .subreddit-image {
