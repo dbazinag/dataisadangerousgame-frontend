@@ -1,5 +1,10 @@
 <template>
-	<div v-if="!deletedHiddenPost" class="base-profile-post" @resize="resizePost">
+	<div
+		v-if="!deletedHiddenPost"
+		class="base-profile-post"
+		:class="postData.data.customClass"
+		@resize="resizePost"
+	>
 		<div class="box">
 			<div class="box-items">
 				<div class="vote-box left-vote-box">
@@ -866,6 +871,11 @@ span {
 	width: 100%;
 	min-height: 94.8px;
 	/* overflow: hidden; */
+}
+
+/* Increase height for cards with zoomed-out-charts class (tall Plotly charts) */
+.base-profile-post.zoomed-out-charts div.box-items {
+	min-height: 500px;
 }
 .vote-box {
 	width: 40px;

@@ -67,6 +67,7 @@
 					{ blur: blur && !(parsedPreview && parsedPreview.isImage) },
 					post.customClass,
 				]"
+				:data-post-id="post._id || post.id"
 			></div>
 			<div v-if="post.link != undefined" class="post-link">
 				<a :href="post.link">{{ post.link }}</a>
@@ -336,8 +337,8 @@ p img .ql-image {
 .post-text.zoomed-out-charts ::v-deep iframe {
 	width: 300%;
 	transform: scale(0.333);
-	margin-bottom: -567px; /* 850 - (850 * 0.333) approx 567 */
-	height: 850px;
+	margin-bottom: -533px; /* 800 - (800 * 0.333) approx 533 */
+	height: 800px;
 }
 
 .post-text.first-post-charts ::v-deep iframe {
@@ -347,6 +348,14 @@ p img .ql-image {
 	height: 750px; /* Slightly taller than default 650px for cluster map */
 	border: none;
 	margin-bottom: -375px; /* Pull up next element by half the height */
+}
+
+/* Specific styling for the Politics Cluster post (ID: post3_3_2_politicsZoom) */
+.post-text[data-post-id='post3_3_2_politicsZoom'] ::v-deep iframe {
+	width: 300%;
+	transform: scale(0.333);
+	margin-bottom: -533px; /* 800 - (800 * 0.333) approx 533 */
+	height: 800px;
 }
 
 .subreddit-info .subreddit-image {
