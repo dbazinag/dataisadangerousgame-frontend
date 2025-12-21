@@ -21,7 +21,7 @@ export const mockPosts = {
 				<h3>The Question That Started It All</h3>
 				<p>What happens to online political discourse during one of the most contentious elections in modern history? Does the internet become more polarized, more hostile, more divided? And if so, how can we actually measure that?</p>
 				<br>
-				<p>This project dives deep into Reddit's political landscape during the 2016 U.S. presidential election, using data science to uncover patterns that aren't visible to the naked eye. We're not just counting posts or tracking keywords—we're mapping communities, analyzing linguistic patterns, examining demographics, and tracing how discourse evolved over three years.</p>
+				<p>This project dives deep into Reddit's political landscape during the 2016 U.S. presidential election, using data science to uncover patterns that aren't visible to the naked eye. We're not just counting posts or tracking keywords, we're mapping communities, analyzing linguistic patterns, examining demographics, and tracing how discourse evolved over three years.</p>
 				<br>
 
 				<h3>Our Approach: A Four-Act Story</h3>
@@ -1243,7 +1243,7 @@ export const mockPosts = {
 					"The Full Picture: What We Learned About Reddit's Political Discourse",
 				content: `
 				<h3>Looking Back: A Journey Through Reddit's Political Landscape</h3>
-				<p>We started with a simple question: what does political discourse on Reddit actually look like during a historic election? After analyzing three years of data across 19 interconnected investigations, we now have answers—some expected, many surprising.</p>
+				<p>We started with a simple question: what does political discourse on Reddit actually look like during a historic election? After analyzing three years of data across 19 interconnected investigations, we now have answers, some expected, many surprising.</p>
 				<br>
 				<p>Let's pull together everything we discovered into a coherent picture of how political Reddit actually works.</p>
 				<br>
@@ -1257,9 +1257,9 @@ export const mockPosts = {
 				<h3>The Hostility Paradox: It's Not What You Think</h3>
 				<p>Here's where things get counterintuitive. Despite the echo chamber effect, when left and right communities <em>do</em> interact, they're not significantly more hostile than when talking to their own side. The LIWC anger analysis showed essentially no difference in emotional tone across ideological boundaries.</p>
 				<br>
-				<p><strong>The problem isn't that cross-ideological discourse is toxic—it's that it barely happens at all.</strong> Polarization on Reddit is about avoidance, not aggression.</p>
+				<p><strong>The problem isn't that cross-ideological discourse is toxic, it's that it barely happens at all.</strong> Polarization on Reddit is about avoidance, not aggression.</p>
 				<br>
-				<p>But when negativity does occur, it's incredibly concentrated. Just 10% of political subreddits drive 91.6% of all negative interactions. Hostility isn't a universal feature—it's a deliberate communication style chosen by a small number of highly antagonistic communities.</p>
+				<p>But when negativity does occur, it's incredibly concentrated. Just 10% of political subreddits drive 91.6% of all negative interactions. Hostility isn't a universal feature, it's a deliberate communication style chosen by a small number of highly antagonistic communities.</p>
 				<br>
 
 				<h3>The Demographic Story: Who Shows Up vs. How They Engage</h3>
@@ -1275,15 +1275,15 @@ export const mockPosts = {
 					</ul>
 				</div>
 				<br>
-				<p>This reveals something fundamental: <strong>political Reddit doesn't just reflect male dominance in numbers—it actively rewards male communication styles.</strong> The platform's voting mechanics create a feedback loop that amplifies certain voices.</p>
+				<p>This reveals something fundamental: <strong>political Reddit doesn't just reflect male dominance in numbers, it actively rewards male communication styles.</strong> The platform's voting mechanics create a feedback loop that amplifies certain voices.</p>
 				<br>
 
 				<h3>The Linguistic Signature: Who Sounds Political?</h3>
 				<p>Politics has a distinct linguistic fingerprint on Reddit: high emotionality, high social reference, highly argumentative, but loosely structured. What surprised us was discovering that <strong>Humor/Memes and Niche Interests clusters share remarkably similar communication patterns</strong> to Politics, despite discussing completely different topics.</p>
 				<br>
-				<p>In contrast, Adult Life & Technology sits at the opposite end: structured, analytical, less emotional. The biggest linguistic gap on Reddit isn't between political ideologies—it's between emotional/social discourse and technical/structured discourse.</p>
+				<p>In contrast, Adult Life & Technology sits at the opposite end: structured, analytical, less emotional. The biggest linguistic gap on Reddit isn't between political ideologies, it's between emotional/social discourse and technical/structured discourse.</p>
 				<br>
-				<p>We also discovered that emotional language and social language are deeply intertwined. On Reddit, <strong>emotional rhetoric is rarely abstract—it almost always involves references to people, groups, and social context.</strong></p>
+				<p>We also discovered that emotional language and social language are deeply intertwined. On Reddit, <strong>emotional rhetoric is rarely abstract, it almost always involves references to people, groups, and social context.</strong></p>
 				<br>
 
 				<h3>The Evolution: Did the Election Matter?</h3>
@@ -1297,7 +1297,7 @@ export const mockPosts = {
 				<h3>The Network Effect: Size ≠ Influence</h3>
 				<p>Politics represents only ~4% of Reddit's subreddits, yet it punches far above its weight in hyperlink activity. This taught us an important lesson: <strong>cluster size and cluster influence are not the same thing.</strong></p>
 				<br>
-				<p>The same three clusters—Politics, Humor/Memes, and Adult Life & Technology—dominated both outgoing and incoming hyperlinks, despite not being the largest clusters. Network centrality, not population size, determines visibility and influence on Reddit.</p>
+				<p>The same three clusters, Politics, Humor/Memes, and Adult Life & Technology, dominated both outgoing and incoming hyperlinks, despite not being the largest clusters. Network centrality, not population size, determines visibility and influence on Reddit.</p>
 				<br>
 
 				<h3>Bringing It All Together</h3>
@@ -1305,15 +1305,15 @@ export const mockPosts = {
 				<br>
 				<p><strong>It's a stratified ecosystem, not a uniformly toxic one.</strong> Echo chambers exist but are asymmetric. Negativity is real but concentrated. Gender gaps exist in participation and in how the platform rewards different communication styles. Polarization is about network structure and avoidance, not about everyone becoming more hostile.</p>
 				<br>
-				<p>The 2016 election didn't create these patterns—it revealed them. Reddit's political discourse was already structured around echo chambers, negativity concentration, and demographic imbalances. The election provided a high-stakes moment that made these underlying dynamics visible in the data.</p>
+				<p>The 2016 election didn't create these patterns, it revealed them. Reddit's political discourse was already structured around echo chambers, negativity concentration, and demographic imbalances. The election provided a high-stakes moment that made these underlying dynamics visible in the data.</p>
 				<br>
 				<p><strong>Most importantly, we learned that online political discourse doesn't work the way we assume.</strong> It's not symmetric. It's not universally hostile. It's not just about ideology. It's structured by network effects, amplified by platform mechanics, shaped by who participates and how they communicate, and evolving over time in response to real-world events.</p>
 				<br>
 
 				<h3>Final Thought: Data Is Indeed A Dangerous Game</h3>
-				<p>Our title—"Data Is A Dangerous Game"—takes on new meaning after this analysis. The danger isn't in the data itself, but in the assumptions we bring to it. If we'd assumed both sides were equally insular, we'd have missed the 83% vs 12.5% asymmetry. If we'd assumed controversy correlates with downvotes, we'd have missed that it actually predicts <em>higher</em> scores. If we'd only looked at raw gender numbers, we'd have missed the qualitative differences in how men and women participate.</p>
+				<p>Our title, "Data Is A Dangerous Game", takes on new meaning after this analysis. The danger isn't in the data itself, but in the assumptions we bring to it. If we'd assumed both sides were equally insular, we'd have missed the 83% vs 12.5% asymmetry. If we'd assumed controversy correlates with downvotes, we'd have missed that it actually predicts <em>higher</em> scores. If we'd only looked at raw gender numbers, we'd have missed the qualitative differences in how men and women participate.</p>
 				<br>
-				<p>Good data analysis requires constantly questioning your intuitions, testing assumptions rigorously, and being willing to be surprised by what you find. That's what makes it dangerous—and what makes it valuable.</p>
+				<p>Good data analysis requires constantly questioning your intuitions, testing assumptions rigorously, and being willing to be surprised by what you find. That's what makes it dangerous, and what makes it valuable.</p>
 				<br>
 				<p><strong>Thank you for joining us on this journey through Reddit's political landscape. We hope you found it as surprising and enlightening as we did.</strong></p>
 				`,
